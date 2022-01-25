@@ -57,4 +57,6 @@
 
 <main>
   <p>{JSON.stringify(event)}</p>
+
+  <p>Refresh page to generate new event.</p>
 </main>
