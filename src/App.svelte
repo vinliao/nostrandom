@@ -1,11 +1,11 @@
 <script>
   import * as secp from "@noble/secp256k1";
 
-  // hhahhaah bots will scrape this and think they found some stash
-  const privateKey = "13ea3d37b40b103db640b7bd84ba6d5664aee32d22d2b08868853e98f1286430";
-
+  const privateKey = secp.utils.randomPrivateKey();
+  const publicKey = secp.schnorr.getPublicKey(privateKey);
+  
   // dummy event, for reference
-  let dummyEvent = {
+  const dummyEvent = {
     id: "052802817e1ffa0d79716b79d842da545cc8abe0529e0896c3a634b9ba2ba77c",
     pubkey: "62bf2ecb0dd7ee7ba7f79b551927573203ee0061491ada5ec02414e265ba2d42",
     created_at: 1643011993,
@@ -27,7 +27,7 @@
 
   async function createEvent() {
     let event = {};
-    event.pubkey = dummyEvent.pubkey;
+    event.pubkey = toHexString(publicKey);
     event.created_at = Date.now();
     event.kind = 1;
     event.tags = [];
