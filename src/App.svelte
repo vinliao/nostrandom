@@ -59,4 +59,5 @@
   <p>{JSON.stringify(event)}</p>
 
   <p>Refresh page to generate new event.</p>
+  <p>For PRs and issues: <a href="https://github.com/vinliao/nostrandom">github.com/vinliao/nostrandom</a>.</p>
 </main>
