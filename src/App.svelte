@@ -31,7 +31,7 @@
     event.created_at = Date.now();
     event.kind = 1;
     event.tags = [];
-    event.content = "From Nostrandom";
+    event.content = "From Nostrandom https://nostrandom.netlify.app";
 
     // id is sha256 of data above
     // sig is schnorr sig of id
