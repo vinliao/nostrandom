@@ -26,20 +26,13 @@
   }
 
   async function createEvent() {
-    const eventContent = "From Nostrandom https://nostrandom.netlify.app";
-
-    // duplicate code!
-    const dummyEvent = {
-      pubkey: toHexString(publicKey),
-      created_at: Date.now(),
-      kind: 1,
-      tags: [],
-      content: eventContent
-    };
+    const content = "From Nostrandom https://nostrandom.netlify.app";
+    const unixTime = Math.floor(Date.now() / 1000);
+    const data = [0, toHexString(publicKey), unixTime, 1, [], content];
 
     // id is sha256 of data above
     // sig is schnorr sig of id
-    const eventString = JSON.stringify(dummyEvent);
+    const eventString = JSON.stringify(data);
     const eventByteArray = new TextEncoder().encode(eventString);
     const eventIdRaw = await secp.utils.sha256(eventByteArray);
     const eventId = toHexString(eventIdRaw);
@@ -50,10 +43,10 @@
     return {
       id: eventId,
       pubkey: toHexString(publicKey),
-      created_at: Date.now(),
+      created_at: unixTime, 
       kind: 1,
       tags: [],
-      content: eventContent,
+      content: content, 
       sig: signature
     }
   }
