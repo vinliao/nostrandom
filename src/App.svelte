@@ -60,6 +60,8 @@
 <main>
   <pre>{JSON.stringify(event, null, 2)}</pre>
 
+  <p>The event above is a publish-able event you can manually publish to Nostr relays.</p>
+  <p>This site doesn't publish event, it only generates event.</p>
   <p>Refresh page to generate new event.</p>
   <p>For PRs and issues: <a href="https://github.com/vinliao/nostrandom">github.com/vinliao/nostrandom</a>.</p>
 </main>
