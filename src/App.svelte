@@ -26,13 +26,6 @@
   }
 
   async function createEvent() {
-    let event = {};
-    event.pubkey = toHexString(publicKey);
-    event.created_at = Date.now();
-    event.kind = 1;
-    event.tags = [];
-    event.content = "From Nostrandom https://nostrandom.netlify.app";
-
     // id is sha256 of data above
     // sig is schnorr sig of id
     const eventString = JSON.stringify(event);
@@ -43,10 +36,15 @@
     const signatureRaw = await secp.schnorr.sign(eventId, privateKey);
     const signature = toHexString(signatureRaw);
 
-    event.id = eventId;
-    event.sig = signature;
-
-    return event;
+    return event = {
+      id: eventId,
+      pubkey: toHexString(publicKey),
+      created_at: Date.now(),
+      kind: 1,
+      tags: [],
+      content: "From Nostrandom https://nostrandom.netlify.app",
+      sig: signature
+    }
   }
 
   (async () => {
@@ -56,7 +54,7 @@
 </script>
 
 <main>
-  <p>{JSON.stringify(event)}</p>
+  <p>{JSON.stringify(event, null, 2)}</p>
 
   <p>Refresh page to generate new event.</p>
   <p>For PRs and issues: <a href="https://github.com/vinliao/nostrandom">github.com/vinliao/nostrandom</a>.</p>
